@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ButtonView: View {
     let text: String
+    let action: () -> Void
+    
     var body: some View {
-        ZStack{
-        RoundedRectangle(cornerRadius: 20)
-            .foregroundColor(.blue)
-            .frame(width: 200, height: 50)
-            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.white, lineWidth: 5))
-            .shadow(radius: 10)
-    Text(text)
-            .foregroundColor(.white)
-            .font(.title)
-            .bold()
+        Button(action: action) {
+            Text(text)
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .bold()
+        }
+        .padding()
+        .frame(width: 200, height: 50)
+        .background(Color.blue)
+            .overlay(RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 5))
+    
     }
 }
-}
+
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(text: "START")
+        ButtonView(text: "START", action: {})
     }
 }
